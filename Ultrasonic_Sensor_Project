@@ -1,0 +1,31 @@
+int led=2;
+int trig=7;
+int echo=6;
+float duration;
+float distance;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(trig, OUTPUT);
+  pinMode(echo, INPUT);
+  pinMode(led, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  digitalWrite(trig,LOW);
+  digitalWrite(trig,HIGH);
+  delay(200);
+  digitalWrite(trig,LOW);
+  duration=pulseIn(echo,HIGH);
+  distance=duration*0.034/2;
+  if(distance<20){
+    digitalWrite(led,1);
+  }
+  else{
+    digitalWrite(led,0);}
+  Serial.print("Distance=");
+  Serial.println(distance);
+}
+
